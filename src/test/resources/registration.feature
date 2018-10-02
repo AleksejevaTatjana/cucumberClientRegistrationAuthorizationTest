@@ -87,16 +87,22 @@ Feature: Testing registration API
       | details | <details> |
 
     Examples:
-      | birthDate      | result | details                   |
-      | 21             | true   | none                      |
-      | 22             | true   | none                      |
-      | 50             | true   | none                      |
-      |                | false  | Field XXX missed          |
-      | 20             | false  | Field birthday bad format |
-      | 0              | false  | Field birthday bad format |
-      | -1             | false  | Field birthday bad format |
-      | 0,21           | false  | Field birthday bad format |
-      | 20 with a half | false  | Field birthday bad format |
+      | birthDate                   | result | details                   |
+      | 25-06-1988                  | true   | none                      |
+      | 27-12-1972                  | true   | none                      |
+      | 27-12-1997                  | false  | Field birthday bad format |
+      | 06-01-2002                  | false  | Field birthday bad format |
+      |                             | false  | Field XXX missed          |
+      | 50                          | false  | Field birthday bad format |
+      | 0                           | false  | Field birthday bad format |
+      | 1988-06-25                  | false  | Field birthday bad format |
+      | 1988.06.25                  | false  | Field birthday bad format |
+      | 12th of Septemper 1964 year | false  | Field birthday bad format |
+      | 25.06.1988                  | false  | Field birthday bad format |
+      | 25.06.88                    | false  | Field birthday bad format |
+      | -1                          | false  | Field birthday bad format |
+      | 0,21                        | false  | Field birthday bad format |
+      | 20 with a half              | false  | Field birthday bad format |
 
 
   Scenario Outline: Checking description validation

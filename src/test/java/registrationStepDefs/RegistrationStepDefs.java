@@ -9,12 +9,16 @@ import model.RegistrationClient;
 import model.Response;
 import org.junit.Assert;
 
+import java.text.ParseException;
 import java.util.Map;
 
 public class RegistrationStepDefs {
     private RegistrationClient registrationClient = new RegistrationClient();
     private Response response = new Response();
     private RegistrationRequester requester = new RegistrationRequester();
+
+    public RegistrationStepDefs() throws ParseException {
+    }
 
     @Given("login client:")
     public void set_clientCheckingLogin(Map<String, String> data) {
