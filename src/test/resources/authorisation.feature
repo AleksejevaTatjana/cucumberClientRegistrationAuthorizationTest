@@ -1,13 +1,13 @@
 Feature: A description
 
   Scenario Outline: Checking login authorization
-    Given client:
+    Given login authorization client:
       | login | <login> |
       | pwd   | 111aaa  |
 
-    When we authorize the client
+    When we authorize the client login
 
-    Then login response is:
+    Then login authorization response is:
       | result  | <result>  |
       | details | <details> |
 
@@ -21,13 +21,13 @@ Feature: A description
       | 1ab   | false  | Field login bad format |
 
   Scenario Outline: Checking password authorization
-    Given client:
+    Given password authorization client:
       | login | 123   |
       | pwd   | <pwd> |
 
-    When we authorize the client
+    When we authorize the password client:
 
-    Then password response is:
+    Then password authorization response is:
       | result  | <result>  |
       | details | <details> |
 

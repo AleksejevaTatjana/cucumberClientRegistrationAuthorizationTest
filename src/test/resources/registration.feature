@@ -1,7 +1,7 @@
 Feature: Testing registration API
 
   Scenario Outline: Checking login validation
-    Given client:
+    Given client login:
       | login       | <login>                                                                                                                    |
       | email       | a@b.com                                                                                                                    |
       | phone       | +371 6111111                                                                                                               |
@@ -9,16 +9,17 @@ Feature: Testing registration API
       | birthDate   | 21                                                                                                                         |
       | description | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua |
 
-    Given address is:
+    Given login address is:
       | country | US        |
       | city    | New York  |
       | state   | John Doe  |
       | zip     | LV-1011   |
       | street  | Ropazu 10 |
 
-    When we register the client
+    When we register the client with login
+    And we register the client with the same login again
 
-    Then response is:
+    Then login response is:
       | result  | <result>  |
       | details | <details> |
 
@@ -31,14 +32,10 @@ Feature: Testing registration API
       | 1,23  | false  | Field login bad format |
       | 1ab   | false  | Field login bad format |
 
-    Then we register client one more time
-
-    And response is:
-      | 123 | false | Field YYY already exists |
 
 
   Scenario Outline: Checking password validation
-    Given client:
+    Given password client:
       | login       | 123              |
       | email       | hm@pt.com        |
       | phone       | +371 6111111     |
@@ -46,16 +43,16 @@ Feature: Testing registration API
       | birthDate   | 60               |
       | description | Some description |
 
-    Given address is:
+    Given password address is:
       | country | US        |
       | city    | New York  |
       | state   | John Doe  |
       | zip     | LV-1011   |
       | street  | Ropazu 10 |
 
-    When we register the client
+    When we register the client with password
 
-    Then response is:
+    Then pwd response is:
       | result  | <result>  |
       | details | <details> |
 
@@ -70,7 +67,7 @@ Feature: Testing registration API
 
 
   Scenario Outline: Checking age validation
-    Given client:
+    Given age client:
       | login       | 563                   |
       | email       | tt@nm.com             |
       | phone       | +371 6111111          |
@@ -78,16 +75,16 @@ Feature: Testing registration API
       | birthDate   | <birthDate>           |
       | description | Some test description |
 
-  Given client address is:
+  Given age client address is:
       | country | US        |
       | city    | New York  |
       | state   | John Doe  |
       | zip     | LV-1011   |
       | street  | Ropazu 10 |
 
-    When we register user
+    When we register age client
 
-    Then response is:
+    Then age response is:
       | result  | <result>  |
       | details | <details> |
 
@@ -105,7 +102,7 @@ Feature: Testing registration API
 
 
   Scenario Outline: Checking description validation
-    Given client:
+    Given description client:
       | login       | 429           |
       | email       | kk@aa.com     |
       | phone       | +371 6111111  |
@@ -113,16 +110,16 @@ Feature: Testing registration API
       | birthDate   | 42            |
       | description | <description> |
 
-    And client address is:
+    And description client address is:
       | country | US        |
       | city    | New York  |
       | state   | John Doe  |
       | zip     | LV-1011   |
       | street  | Ropazu 10 |
 
-    When we register user
+    When we register description client
 
-    Then response is:
+    Then description response is:
       | result  | <result>  |
       | details | <details> |
 
