@@ -5,7 +5,7 @@ Feature: A description
       | login | <login> |
       | pwd   | 111aaa  |
 
-    When we authorize the client login
+    When we authorize login client:
 
     Then login authorization response is:
       | result  | <result>  |
@@ -18,7 +18,8 @@ Feature: A description
       | 012   | false  | Field login bad format |
       | -123  | false  | Field login bad format |
       | 1,23  | false  | Field login bad format |
-      | 1ab   | false  | Field login bad format |
+      | 1ab   | false  | Field login bad format   |
+
 
   Scenario Outline: Checking password authorization
     Given password authorization client:
@@ -32,11 +33,10 @@ Feature: A description
       | details | <details> |
 
     Examples:
-      | pwd    | result | details                |
-      | 111aaa | true   | none                   |
-      |        | false  | Field XXX missed       |
-      | 012 | false  | Field login bad format |
-      | -123   | false  | Field login bad format |
-      | 1,23   | false  | Field login bad format |
-      | 1ab    | false  | Field login bad format |
-
+      | pwd    | result | details              |
+      | 111aaa | true   | none                 |
+      |        | false  | Field XXX missed     |
+      | aaa    | false  | Field pwd bad format |
+      | 012    | false  | Field pwd bad format |
+      | -123   | false  | Field pwd bad format |
+      | 1,23   | false  | Field pwd bad format |

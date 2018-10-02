@@ -20,7 +20,7 @@ public class AuthorizationStepDefs {
         authorizationClient.setPwd(data.get("pwd"));
     }
 
-    @When("we authorize the client login")
+    @When("we authorize login client:")
     public void get_clientLogin() {
         response = requester.register(authorizationClient);
     }

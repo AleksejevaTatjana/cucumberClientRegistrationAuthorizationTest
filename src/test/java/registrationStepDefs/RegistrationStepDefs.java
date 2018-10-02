@@ -16,7 +16,7 @@ public class RegistrationStepDefs {
     private Response response = new Response();
     private RegistrationRequester requester = new RegistrationRequester();
 
-    @Given("client login:")
+    @Given("login client:")
     public void set_clientCheckingLogin(Map<String, String> data) {
         registrationClient.setLogin(data.get("login"));
         registrationClient.setEmail(data.get("email"));
@@ -36,12 +36,12 @@ public class RegistrationStepDefs {
         address.setStreet(data.get("street"));
     }
 
-    @When("we register the client with login")
+    @When("we register login client:")
     public void get_clientLogin() {
         response = requester.register(registrationClient);
     }
 
-    @And ("we register the client with the same login again")
+    @And("we register login client again:")
     public void get_clientDataCheckingLoginAgain() {
         response = requester.register(registrationClient);
     }
@@ -50,7 +50,6 @@ public class RegistrationStepDefs {
     public void check_responseLogin(Map<String, String> data) {
         Assert.assertEquals("incorrect result", data.get("result"), response.getResult());
         Assert.assertEquals("incorrect details", data.get("details"), response.getDetails());
-
     }
 
 
@@ -77,14 +76,12 @@ public class RegistrationStepDefs {
     @When("we register the client with password")
     public void get_clientDataCheckingPwd() {
         response = requester.register(registrationClient);
-
     }
 
     @Then("pwd response is:")
     public void check_responsePwd(Map<String, String> data) {
         Assert.assertEquals("incorrect result", data.get("result"), response.getResult());
         Assert.assertEquals("incorrect details", data.get("details"), response.getDetails());
-
     }
 
 
@@ -140,7 +137,7 @@ public class RegistrationStepDefs {
         address.setStreet(data.get("street"));
     }
 
-    @When("we register description client")
+    @When("we register description client:")
     public void get_clientDataCheckingDescription() {
         response = requester.register(registrationClient);
     }

@@ -1,7 +1,7 @@
 Feature: Testing registration API
 
   Scenario Outline: Checking login validation
-    Given client login:
+    Given login client:
       | login       | <login>                                                                                                                    |
       | email       | a@b.com                                                                                                                    |
       | phone       | +371 6111111                                                                                                               |
@@ -16,22 +16,20 @@ Feature: Testing registration API
       | zip     | LV-1011   |
       | street  | Ropazu 10 |
 
-    When we register the client with login
-    And we register the client with the same login again
+    When we register login client:
+    And we register login client again:
 
     Then login response is:
       | result  | <result>  |
       | details | <details> |
 
     Examples:
-      | login | result | details                |
-      | 123   | true   | none                   |
-      |       | false  | Field XXX missed       |
-      | 012   | false  | Field login bad format |
-      | -123  | false  | Field login bad format |
-      | 1,23  | false  | Field login bad format |
-      | 1ab   | false  | Field login bad format |
-
+      | login | result | details                  |
+      | 123   | true   | none                     |
+      |       | false  | Field XXX missed         |
+      | -123  | false  | Field login bad format   |
+      | 1,23  | false  | Field login bad format   |
+      | 123   | false  | Field YYY already exists |
 
 
   Scenario Outline: Checking password validation
@@ -60,10 +58,10 @@ Feature: Testing registration API
       | password | result | details              |
       | 111aaa   | true   | none                 |
       |          | false  | Field XXX missed     |
-      | 45    | false  | Field pwd bad format |
       | 45       | false  | Field pwd bad format |
       | aaa      | false  | Field pwd bad format |
-      | -1+_a=   | false  | Field pwd bad format |
+      | -123     | false  | Field pwd bad format |
+      | 1,23     | false  | Field pwd bad format |
 
 
   Scenario Outline: Checking age validation
@@ -75,7 +73,7 @@ Feature: Testing registration API
       | birthDate   | <birthDate>           |
       | description | Some test description |
 
-  Given age client address is:
+    Given age client address is:
       | country | US        |
       | city    | New York  |
       | state   | John Doe  |
@@ -117,19 +115,15 @@ Feature: Testing registration API
       | zip     | LV-1011   |
       | street  | Ropazu 10 |
 
-    When we register description client
+    When we register description client:
 
     Then description response is:
       | result  | <result>  |
       | details | <details> |
 
     Examples:
-      | description                                                                                                                | result | details                      |
-      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua | true   | none                         |
-      | text 1                                                                                                                     | false  | Field description bad format |
-      |                                                                                                                            | false  | Field XXX missed             |
-      | 8888text                                                                                                                   | false  | Field descriprion bad format |
-      | 0                                                                                                                          | false  | Field descriprion bad format |
-      | Lorem ipsum dolor sit amet, consectetur adipiscing elit                                                                    | false  | Field description bad format |
-      | text -0123445;                                                                                                             | false  | Field descriprion bad format |
-      | lvlsmvs                                                                                                               | false  | Field descriprion bad format |
+      | description                                                                                                                 | result | details                      |
+      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua  | true   | none                         |
+      |                                                                                                                             | false  | Field XXX missed             |
+      | Lorem ipsum dolor sit amet, consectetur adipiscing elit vkwemvlk vkemwmvkm kvmkmlkem memvkedm velewe kvmevlk ekv klfvldkvls | false  | Field description bad format |
+      | 1234567899876543210                                                                                                         | false  | Field description bad format |
