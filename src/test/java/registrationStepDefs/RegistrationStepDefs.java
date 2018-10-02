@@ -115,7 +115,7 @@ public class RegistrationStepDefs {
         registrationClient.setPhone(data.get("description"));
     }
 
-    @Given("address is:")
+    @Given("client address is:")
     public void set_addressForCheckingBirthday(Map<String, String> data) {
         Address address = new Address();
         address.setCountry(data.get("country"));

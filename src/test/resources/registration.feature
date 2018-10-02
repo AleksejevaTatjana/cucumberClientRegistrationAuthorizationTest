@@ -63,7 +63,7 @@ Feature: Testing registration API
       | password | result | details              |
       | 111aaa   | true   | none                 |
       |          | false  | Field XXX missed     |
-      | 45ффф    | false  | Field pwd bad format |
+      | 45    | false  | Field pwd bad format |
       | 45       | false  | Field pwd bad format |
       | aaa      | false  | Field pwd bad format |
       | -1+_a=   | false  | Field pwd bad format |
@@ -78,7 +78,7 @@ Feature: Testing registration API
       | birthDate   | <birthDate>           |
       | description | Some test description |
 
-    And client address is:
+  Given client address is:
       | country | US        |
       | city    | New York  |
       | state   | John Doe  |
@@ -135,4 +135,4 @@ Feature: Testing registration API
       | 0                                                                                                                          | false  | Field descriprion bad format |
       | Lorem ipsum dolor sit amet, consectetur adipiscing elit                                                                    | false  | Field description bad format |
       | text -0123445;                                                                                                             | false  | Field descriprion bad format |
-      | паьтапикхж                                                                                                                 | false  | Field descriprion bad format |
+      | lvlsmvs                                                                                                               | false  | Field descriprion bad format |

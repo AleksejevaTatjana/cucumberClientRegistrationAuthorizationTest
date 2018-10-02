@@ -25,7 +25,7 @@ public class AuthorizationStepDefs {
         response = requester.register(authorizationClient);
     }
 
-    @Then("response is:")
+    @Then("login response is:")
     public void check_responseLogin(Map<String, String> data) {
         Assert.assertEquals("incorrect result", data.get("result"), response.getResult());
         Assert.assertEquals("incorrect details", data.get("details"), response.getDetails());
@@ -43,7 +43,7 @@ public class AuthorizationStepDefs {
         response = requester.register(authorizationClient);
     }
 
-    @Then("response is:")
+    @Then("password response is:")
     public void check_responsePwd(Map<String, String> data) {
         Assert.assertEquals("incorrect result", data.get("result"), response.getResult());
         Assert.assertEquals("incorrect details", data.get("details"), response.getDetails());

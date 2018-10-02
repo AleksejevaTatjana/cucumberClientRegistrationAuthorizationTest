@@ -35,7 +35,7 @@ Feature: A description
       | pwd    | result | details                |
       | 111aaa | true   | none                   |
       |        | false  | Field XXX missed       |
-      | 012ккк | false  | Field login bad format |
+      | 012 | false  | Field login bad format |
       | -123   | false  | Field login bad format |
       | 1,23   | false  | Field login bad format |
       | 1ab    | false  | Field login bad format |
