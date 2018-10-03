@@ -68,6 +68,7 @@ Feature: Testing registration API
 
     Examples:
       | password | result | details              |
+      | 111aaa   | true   | none                 |
       |          | false  | Field pwd missed     |
       | 45       | false  | Field pwd bad format |
       | aaa      | false  | Field pwd bad format |
@@ -98,11 +99,11 @@ Feature: Testing registration API
 
     Examples:
       | birthDate                   | result | details                   |
-      | 25-06-1988                  | true   | none                      |
-      | 27-12-1972                  | true   | none                      |
-      | 27-12-1997                  | false  | Field birthday bad format |
+      | 1988-06-25T00:00:00.000Z    | true   | none                      |
+      | 1990-06-25T00:00:00.000Z    | true   | none                      |
+      | 2005-06-25T00:00:00.000Z    | false  | Field birthday bad format |
       | 06-01-2002                  | false  | Field birthday bad format |
-      |                             | false  | Field XXX missed          |
+      |                             | false  | Field birthday missed     |
       | 50                          | false  | Field birthday bad format |
       | 0                           | false  | Field birthday bad format |
       | 1988-06-25                  | false  | Field birthday bad format |
@@ -139,6 +140,6 @@ Feature: Testing registration API
     Examples:
       | description                                                                                                                 | result | details                      |
       | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua  | true   | none                         |
-      |                                                                                                                             | false  | Field XXX missed             |
+      |                                                                                                                             | false  | Field description missed     |
       | Lorem ipsum dolor sit amet, consectetur adipiscing elit vkwemvlk vkemwmvkm kvmkmlkem memvkedm velewe kvmevlk ekv klfvldkvls | false  | Field description bad format |
       | 1234567899876543210                                                                                                         | false  | Field description bad format |

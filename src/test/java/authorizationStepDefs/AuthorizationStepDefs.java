@@ -8,6 +8,7 @@ import model.Response;
 import org.junit.Assert;
 
 
+import java.io.IOException;
 import java.util.Map;
 
 public class AuthorizationStepDefs {
@@ -22,7 +23,7 @@ public class AuthorizationStepDefs {
     }
 
     @When("we authorize client")
-    public void get_client() {
+    public void get_client() throws IOException {
         response = requester.register(authorizationClient);
     }
 

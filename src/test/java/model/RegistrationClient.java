@@ -6,17 +6,12 @@ import java.util.Date;
 
 public class RegistrationClient {
 
-
     private String email;
     private String phone;
     private String pwd;
     private String birthDate;
     private String description;
-
     private Address address;
-
-    public RegistrationClient() throws ParseException {
-    }
 
     public String getEmail() {
         return email;
