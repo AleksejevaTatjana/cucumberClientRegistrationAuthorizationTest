@@ -20,9 +20,6 @@ public class RegistrationStepDefs {
     private Response response = new Response();
     private RegistrationRequester requester = new RegistrationRequester();
 
-    public RegistrationStepDefs() throws ParseException {
-    }
-
     @Given("client")
     public void set_client(Map<String, String> data) throws ParseException {
         if (data.get("email").equals("random")) {

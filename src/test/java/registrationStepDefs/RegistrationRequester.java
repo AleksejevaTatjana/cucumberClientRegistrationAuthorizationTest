@@ -11,6 +11,7 @@ import java.io.IOException;
 public class RegistrationRequester {
 
     private final String URL = "http://207.154.242.0:8888/v1/register";
+
     public Response register(RegistrationClient registrationClient) throws IOException {
         RestTemplate restTemplate = new RestTemplate();
         String response;

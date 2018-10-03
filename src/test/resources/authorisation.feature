@@ -26,7 +26,7 @@ Feature: A description
     Examples:
       | login | result | details                |
       | 123   | true   | none                   |
-      |       | false  | Field XXX missed       |
+      |       | false  | Field login missed     |
       | 012   | false  | Field login bad format |
       | -123  | false  | Field login bad format |
       | 1,23  | false  | Field login bad format |
@@ -47,7 +47,7 @@ Feature: A description
     Examples:
       | pwd    | result | details              |
       | 111aaa | true   | none                 |
-      |        | false  | Field XXX missed     |
+      |        | false  | Field pwd missed     |
       | aaa    | false  | Field pwd bad format |
       | 012    | false  | Field pwd bad format |
       | -123   | false  | Field pwd bad format |
