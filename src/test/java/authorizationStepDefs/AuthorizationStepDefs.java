@@ -7,7 +7,7 @@ import model.AuthorizationClient;
 import model.Response;
 import org.junit.Assert;
 
-import java.io.IOException;
+
 import java.util.Map;
 
 public class AuthorizationStepDefs {
@@ -22,13 +22,13 @@ public class AuthorizationStepDefs {
     }
 
     @When("we authorize client")
-    public void get_client() throws IOException {
+    public void get_client() {
         response = requester.register(authorizationClient);
     }
 
     @Then("response is")
     public void check_response(Map<String, String> data) {
-        Assert.assertEquals("incorrect result", data.get("result"), response.getResult());
+        Assert.assertEquals("incorrect result", Boolean.valueOf(data.get("result")), response.getResult());
         Assert.assertEquals("incorrect details", data.get("details"), response.getDetails());
     }
 }
