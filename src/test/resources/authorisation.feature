@@ -1,13 +1,25 @@
 Feature: A description
 
+  Scenario: Happy path
+    Given client
+      | login | 123    |
+      | pwd   | 111aaa |
+
+    When we authorize client
+
+    Then response is
+      | result  | true |
+      | details | none |
+
+
   Scenario Outline: Checking login authorization
-    Given login authorization client:
+    Given client
       | login | <login> |
       | pwd   | 111aaa  |
 
-    When we authorize login client:
+    When we authorize client
 
-    Then login authorization response is:
+    Then response is
       | result  | <result>  |
       | details | <details> |
 
@@ -18,17 +30,17 @@ Feature: A description
       | 012   | false  | Field login bad format |
       | -123  | false  | Field login bad format |
       | 1,23  | false  | Field login bad format |
-      | 1ab   | false  | Field login bad format   |
+      | 1ab   | false  | Field login bad format |
 
 
   Scenario Outline: Checking password authorization
-    Given password authorization client:
+    Given client
       | login | 123   |
       | pwd   | <pwd> |
 
-    When we authorize the password client:
+    When we authorize client
 
-    Then password authorization response is:
+    Then response is
       | result  | <result>  |
       | details | <details> |
 

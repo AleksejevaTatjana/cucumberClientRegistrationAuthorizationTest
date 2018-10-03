@@ -1,15 +1,19 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Response {
 
-    private String result;
+    @JsonProperty("Result")
+    private boolean result;
+    @JsonProperty("Details")
     private String details;
 
-    public String getResult() {
+    public boolean getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    public void setResult(boolean result) {
         this.result = result;
     }
 

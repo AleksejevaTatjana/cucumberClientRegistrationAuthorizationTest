@@ -1,88 +1,98 @@
 Feature: Testing registration API
 
-  Scenario Outline: Checking login validation
-    Given login client:
-      | login       | <login>                                                                                                                    |
-      | email       | a@b.com                                                                                                                    |
+  Scenario: Happy path
+    Given client
+      | email       | random                                                                                                                     |
       | phone       | +371 6111111                                                                                                               |
       | pwd         | 111aaa                                                                                                                     |
-      | birthDate   | 21                                                                                                                         |
+      | birthDate   | 1988-06-25T00:00:00.000Z                                                                                                   |
       | description | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua |
 
-    Given login address is:
+    And address is
       | country | US        |
       | city    | New York  |
       | state   | John Doe  |
       | zip     | LV-1011   |
       | street  | Ropazu 10 |
 
-    When we register login client:
-    And we register login client again:
+    When we register client
 
-    Then login response is:
-      | result  | <result>  |
-      | details | <details> |
+    Then response is
+      | result  | true |
+      | details | none |
 
-    Examples:
-      | login | result | details                  |
-      | 123   | true   | none                     |
-      |       | false  | Field XXX missed         |
-      | -123  | false  | Field login bad format   |
-      | 1,23  | false  | Field login bad format   |
-      | 123   | false  | Field YYY already exists |
+
+  Scenario: Email already exists
+    Given client
+      | email       | random                                                                                                                     |
+      | phone       | +371 6111111                                                                                                               |
+      | pwd         | 111aaa                                                                                                                     |
+      | birthDate   | 1988-06-25T00:00:00.000Z                                                                                                   |
+      | description | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua |
+
+    And address is
+      | country | US        |
+      | city    | New York  |
+      | state   | John Doe  |
+      | zip     | LV-1011   |
+      | street  | Ropazu 10 |
+
+    When we register client
+    And we register client
+
+    Then response is
+      | result  | false                      |
+      | details | Field email already exists |
 
 
   Scenario Outline: Checking password validation
-    Given password client:
-      | login       | 123              |
-      | email       | hm@pt.com        |
-      | phone       | +371 6111111     |
-      | pwd         | <password>       |
-      | birthDate   | 60               |
-      | description | Some description |
+    Given client
+      | email       | random                                                                                                                     |
+      | phone       | +371 6111111                                                                                                               |
+      | pwd         | <password>                                                                                                                 |
+      | birthDate   | 1988-06-25T00:00:00.000Z                                                                                                   |
+      | description | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua |
 
-    Given password address is:
+    And address is
       | country | US        |
       | city    | New York  |
       | state   | John Doe  |
       | zip     | LV-1011   |
       | street  | Ropazu 10 |
 
-    When we register the client with password
+    When we register client
 
-    Then pwd response is:
+    Then response is
       | result  | <result>  |
       | details | <details> |
 
     Examples:
       | password | result | details              |
-      | 111aaa   | true   | none                 |
-      |          | false  | Field XXX missed     |
+      |          | false  | Field pwd missed     |
       | 45       | false  | Field pwd bad format |
       | aaa      | false  | Field pwd bad format |
       | -123     | false  | Field pwd bad format |
       | 1,23     | false  | Field pwd bad format |
 
 
-  Scenario Outline: Checking age validation
-    Given age client:
-      | login       | 563                   |
-      | email       | tt@nm.com             |
-      | phone       | +371 6111111          |
-      | pwd         | sfdfsd235345          |
-      | birthDate   | <birthDate>           |
-      | description | Some test description |
+  Scenario Outline: Checking birthDate validation
+    Given client
+      | email       | random                                                                                                                     |
+      | phone       | +371 6111111                                                                                                               |
+      | pwd         | 111aaa                                                                                                                     |
+      | birthDate   | <birthDate>                                                                                                                |
+      | description | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua |
 
-    Given age client address is:
+    And address is
       | country | US        |
       | city    | New York  |
       | state   | John Doe  |
       | zip     | LV-1011   |
       | street  | Ropazu 10 |
 
-    When we register age client
+    When we register client
 
-    Then age response is:
+    Then response is
       | result  | <result>  |
       | details | <details> |
 
@@ -97,7 +107,7 @@ Feature: Testing registration API
       | 0                           | false  | Field birthday bad format |
       | 1988-06-25                  | false  | Field birthday bad format |
       | 1988.06.25                  | false  | Field birthday bad format |
-      | 12th of Septemper 1964 year | false  | Field birthday bad format |
+      | 12th of September 1964 year | false  | Field birthday bad format |
       | 25.06.1988                  | false  | Field birthday bad format |
       | 25.06.88                    | false  | Field birthday bad format |
       | -1                          | false  | Field birthday bad format |
@@ -106,24 +116,23 @@ Feature: Testing registration API
 
 
   Scenario Outline: Checking description validation
-    Given description client:
-      | login       | 429           |
-      | email       | kk@aa.com     |
-      | phone       | +371 6111111  |
-      | pwd         | jj3           |
-      | birthDate   | 42            |
-      | description | <description> |
+    Given client
+      | email       | random                   |
+      | phone       | +371 6111111             |
+      | pwd         | 111aaa                   |
+      | birthDate   | 1988-06-25T00:00:00.000Z |
+      | description | <description>            |
 
-    And description client address is:
+    And address is
       | country | US        |
       | city    | New York  |
       | state   | John Doe  |
       | zip     | LV-1011   |
       | street  | Ropazu 10 |
 
-    When we register description client:
+    When we register client
 
-    Then description response is:
+    Then response is
       | result  | <result>  |
       | details | <details> |
 

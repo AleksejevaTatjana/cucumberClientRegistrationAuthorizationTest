@@ -1,16 +1,26 @@
 package registrationStepDefs;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import model.RegistrationClient;
 import model.Response;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import java.io.IOException;
 
 public class RegistrationRequester {
 
     private final String URL = "http://207.154.242.0:8888/v1/register";
-
-    public Response register(RegistrationClient registrationClient) {
+    public Response register(RegistrationClient registrationClient) throws IOException {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(URL, registrationClient, Response.class).getBody();
+        String response;
+        try {
+            response = restTemplate.postForEntity(URL, registrationClient, String.class).getBody();
+        } catch (HttpClientErrorException e) {
+            response = e.getResponseBodyAsString();
+        }
 
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(response, Response.class);
     }
 }
