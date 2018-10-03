@@ -25,3 +25,4 @@ public class RegistrationRequester {
         return mapper.readValue(response, Response.class);
     }
 }
+

@@ -145,3 +145,4 @@ Feature: Testing registration API
       |                                                                                                                             | false  | Field description missed     |
       | Lorem ipsum dolor sit amet, consectetur adipiscing elit vkwemvlk vkemwmvkm kvmkmlkem memvkedm velewe kvmevlk ekv klfvldkvls | false  | Field description bad format |
       | 1234567899876543210                                                                                                         | false  | Field description bad format |
+    

@@ -7,7 +7,6 @@ import model.AuthorizationClient;
 import model.Response;
 import org.junit.Assert;
 
-
 import java.io.IOException;
 import java.util.Map;
 

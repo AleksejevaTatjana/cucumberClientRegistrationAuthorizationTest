@@ -5,7 +5,6 @@ import model.AuthorizationClient;
 import model.Response;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
 
 public class AuthorizationRequester {

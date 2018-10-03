@@ -64,3 +64,4 @@ public class RegistrationClient {
         this.birthDate = outputFormat.format(date);
     }
 }
+
