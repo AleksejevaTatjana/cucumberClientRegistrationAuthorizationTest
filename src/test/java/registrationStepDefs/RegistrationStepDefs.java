@@ -34,7 +34,7 @@ public class RegistrationStepDefs {
         registrationClient.setDescription(data.get("description"));
     }
 
-    @And("address is")
+    @Given("address is")
     public void set_address(Map<String, String> data) {
         Address address = new Address();
         address.setCountry(data.get("country"));

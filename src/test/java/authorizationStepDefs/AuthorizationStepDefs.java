@@ -23,7 +23,7 @@ public class AuthorizationStepDefs {
 
     @When("we authorize client")
     public void get_client() throws IOException {
-        response = requester.register(authorizationClient);
+        response = requester.authorize(authorizationClient);
     }
 
     @Then("response is")
